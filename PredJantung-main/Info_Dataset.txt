@@ -1,0 +1,57 @@
+Usia (age):
+
+Ini adalah usia pasien dalam tahun.
+Jenis Kelamin (sex):
+
+Memilih jenis kelamin pasien, bisa berupa "Laki-laki" atau "Perempuan".
+Tipe Nyeri Dada (cp):
+
+Jenis nyeri dada yang dialami pasien. Pilihan:
+Angina khas: Nyeri dada yang terkait dengan penyakit jantung.
+Angina atipikal: Nyeri dada yang tidak khas, tidak secara langsung terkait dengan penyakit jantung.
+Non-anginal: Nyeri dada yang tidak disebabkan oleh gangguan aliran darah ke jantung.
+Asimtomatik: Tidak ada gejala nyeri dada yang terasa.
+Tekanan Darah Istirahat (trestbps):
+
+Tekanan darah pasien pada saat istirahat, diukur dalam mm Hg (milimeter raksa).
+Kolesterol Serum (chol):
+
+Kadar kolesterol serum pasien dalam mg/dl (miligram per desiliter).
+Gula Darah Puasa (fbs):
+
+Apakah gula darah pasien lebih dari 120 mg/dl saat puasa. Pilihan:
+Ya: Gula darah puasa lebih dari 120 mg/dl.
+Tidak: Gula darah puasa tidak lebih dari 120 mg/dl.
+Hasil EKG Istirahat (restecg):
+
+Hasil elektrokardiografi (EKG) pasien pada saat istirahat. Pilihan:
+Normal: Hasil EKG normal.
+Abnormalitas ST-T: Ada abnormalitas pada gelombang ST-T.
+Hipertrofi LV: Ada tanda-tanda hipertrofi ventrikel kiri.
+Denyut Jantung Maksimum (thalch):
+
+Denyut jantung maksimum yang dicapai oleh pasien selama tes latihan.
+Angina yang Dipicu oleh Latihan (exang):
+
+Apakah pasien mengalami angina yang dipicu oleh latihan. Pilihan:
+Ya: Pasien mengalami angina saat latihan.
+Tidak: Pasien tidak mengalami angina saat latihan.
+Depresi ST yang Dipicu oleh Latihan (oldpeak):
+
+Penurunan segment ST pada EKG pasien selama latihan relatif terhadap istirahat.
+Kemiringan Segmen ST Puncak Latihan (slope):
+
+Kemiringan segmen ST pada EKG selama puncak latihan. Pilihan:
+Naik: Kemiringan ST naik selama latihan.
+Datar: Kemiringan ST datar selama latihan.
+Menurun: Kemiringan ST menurun selama latihan.
+Jumlah Pembuluh Besar yang Diberi Warna (ca):
+
+Jumlah pembuluh besar utama (0-3) yang diwarnai dengan fluoroskopi.
+Thal (thal):
+
+Hasil tes thalasemia. Pilihan:
+Normal: Hasil tes normal.
+Defek Tetap: Adanya defek tetap dalam hasil tes.
+Defek Reversibel: Adanya defek reversibel dalam hasil tes.
+Input ini digunakan untuk memprediksi kemungkinan adanya penyakit jantung pada pasien berdasarkan model yang telah dilatih sebelumnya. Semoga penjelasan ini membantu menjelaskan arti dari masing-masing kolom input!
