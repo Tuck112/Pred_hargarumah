@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from pyspark.sql.functions import col, F
+from pyspark.sql.functions import col, mean as _mean
 from pyspark.ml.feature import StringIndexer, VectorAssembler
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
@@ -52,8 +52,8 @@ def show_correlation_heatmap(df):
 def train_linear_regression(df):
     df = df.withColumnRenamed('median_house_value', 'price')
     df = df.na.drop()
-    mean = df.select(F.mean('total_bedrooms')).collect()[0][0]
-    df = df.na.fill({'total_bedrooms': mean})
+    mean_bedrooms = df.select(_mean('total_bedrooms')).collect()[0][0]
+    df = df.na.fill({'total_bedrooms': mean_bedrooms})
     df = df.withColumn('per_capital_income', df['median_income'] * 10000 / df['population'])
     
     indexer = StringIndexer(inputCol="ocean_proximity", outputCol="ocean_proximity_encoded")
