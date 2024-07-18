@@ -1,5 +1,8 @@
 import streamlit as st
 import findspark
+import os
+
+# Initialize findspark and Spark
 findspark.init()
 import pyspark
 from pyspark.sql import SparkSession
@@ -11,6 +14,7 @@ from pyspark.sql.functions import col, F
 from pyspark.ml.feature import StringIndexer, VectorAssembler
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
+from pyspark.ml.stat import Correlation
 
 # Initialize Spark
 spark = SparkSession.builder.appName('DataFrame').getOrCreate()
