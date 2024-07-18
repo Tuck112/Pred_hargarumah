@@ -1,0 +1,7 @@
+streamlit
+findspark
+pyspark
+numpy
+pandas
+seaborn
+matplotlib
