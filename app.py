@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 # Fungsi untuk memuat dan membersihkan data
 def load_data():
-    df = pd.read_csv('data/kc_house_data.csv', usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
+    df = pd.read_csv('kc_house_data.csv', usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
     df['bathrooms'] = df['bathrooms'].astype('int')
     df['bedrooms'] = df['bedrooms'].replace(33, 3)
     return df
