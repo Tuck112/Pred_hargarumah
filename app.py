@@ -99,7 +99,7 @@ def predict_price(model):
 # Main function untuk aplikasi Streamlit
 def main():
     st.title("House Price Analysis and Prediction")
-    file_path = 'data/kc_house_data.csv'
+    file_path = 'kc_house_data.csv'
     df = load_data(file_path)
     if df is not None:
         display_data_statistics(df)
