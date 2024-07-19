@@ -4,10 +4,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+import os
 
 # Fungsi untuk memuat dan membersihkan data
-def load_data():
-    df = pd.read_csv('kc_house_data.csv', usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
+def load_data(file_path):
+    if not os.path.exists(file_path):
+        st.error(f"File {file_path} tidak ditemukan. Pastikan file tersebut ada di direktori yang benar.")
+        return None
+    df = pd.read_csv(file_path, usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
     df['bathrooms'] = df['bathrooms'].astype('int')
     df['bedrooms'] = df['bedrooms'].replace(33, 3)
     return df
@@ -95,11 +99,13 @@ def predict_price(model):
 # Main function untuk aplikasi Streamlit
 def main():
     st.title("House Price Analysis and Prediction")
-    df = load_data()
-    display_data_statistics(df)
-    display_plots(df)
-    model = linear_regression(df)
-    predict_price(model)
+    file_path = 'data/kc_house_data.csv'
+    df = load_data(file_path)
+    if df is not None:
+        display_data_statistics(df)
+        display_plots(df)
+        model = linear_regression(df)
+        predict_price(model)
 
 if __name__ == "__main__":
     main()
