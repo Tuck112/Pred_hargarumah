@@ -84,17 +84,21 @@ def linear_regression(df):
 # Fungsi untuk memprediksi harga berdasarkan input pengguna
 def predict_price(model):
     st.write("## Predict House Price")
-    bedrooms = st.number_input("Number of Bedrooms", min_value=1, max_value=10, value=3)
-    bathrooms = st.number_input("Number of Bathrooms", min_value=1, max_value=10, value=2)
-    sqft_living = st.number_input("Square Footage of Living Area", min_value=500, max_value=10000, value=1800)
-    grade = st.number_input("Grade", min_value=1, max_value=13, value=7)
-    yr_built = st.number_input("Year Built", min_value=1900, max_value=2022, value=1990)
-    
-    input_data = pd.DataFrame([[bedrooms, bathrooms, sqft_living, grade, yr_built]], 
-                              columns=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'yr_built'])
-    
-    prediction = model.predict(input_data)
-    st.write(f"### Predicted Price: ${prediction[0]:,.2f}")
+    with st.form(key='prediction_form'):
+        bedrooms = st.number_input("Number of Bedrooms", min_value=1, max_value=10, value=3)
+        bathrooms = st.number_input("Number of Bathrooms", min_value=1, max_value=10, value=2)
+        sqft_living = st.number_input("Square Footage of Living Area", min_value=500, max_value=10000, value=1800)
+        grade = st.number_input("Grade", min_value=1, max_value=13, value=7)
+        yr_built = st.number_input("Year Built", min_value=1900, max_value=2022, value=1990)
+        
+        submit_button = st.form_submit_button(label='Predict')
+        
+        if submit_button:
+            input_data = pd.DataFrame([[bedrooms, bathrooms, sqft_living, grade, yr_built]], 
+                                      columns=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'yr_built'])
+            
+            prediction = model.predict(input_data)
+            st.write(f"### Predicted Price: ${prediction[0]:,.2f}")
 
 # Main function untuk aplikasi Streamlit
 def main():
