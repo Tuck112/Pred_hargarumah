@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 # Fungsi untuk memuat dan membersihkan data
 def load_data():
-    df = pd.read_csv('kc_house_data.csv', usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
+    df = pd.read_csv('data/kc_house_data.csv', usecols=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'price', 'yr_built'])
     df['bathrooms'] = df['bathrooms'].astype('int')
     df['bedrooms'] = df['bedrooms'].replace(33, 3)
     return df
@@ -74,8 +74,23 @@ def linear_regression(df):
     st.write(lin_reg.intercept_)
     st.write("### R^2 Score")
     st.write(score)
-    st.write("### Prediction for [3, 2, 1800, 7, 1990]")
-    st.write(lin_reg.predict([[3, 2, 1800, 7, 1990]]))
+    
+    return lin_reg
+
+# Fungsi untuk memprediksi harga berdasarkan input pengguna
+def predict_price(model):
+    st.write("## Predict House Price")
+    bedrooms = st.number_input("Number of Bedrooms", min_value=1, max_value=10, value=3)
+    bathrooms = st.number_input("Number of Bathrooms", min_value=1, max_value=10, value=2)
+    sqft_living = st.number_input("Square Footage of Living Area", min_value=500, max_value=10000, value=1800)
+    grade = st.number_input("Grade", min_value=1, max_value=13, value=7)
+    yr_built = st.number_input("Year Built", min_value=1900, max_value=2022, value=1990)
+    
+    input_data = pd.DataFrame([[bedrooms, bathrooms, sqft_living, grade, yr_built]], 
+                              columns=['bedrooms', 'bathrooms', 'sqft_living', 'grade', 'yr_built'])
+    
+    prediction = model.predict(input_data)
+    st.write(f"### Predicted Price: ${prediction[0]:,.2f}")
 
 # Main function untuk aplikasi Streamlit
 def main():
@@ -83,7 +98,8 @@ def main():
     df = load_data()
     display_data_statistics(df)
     display_plots(df)
-    linear_regression(df)
+    model = linear_regression(df)
+    predict_price(model)
 
 if __name__ == "__main__":
     main()
